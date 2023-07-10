@@ -70,7 +70,7 @@ function Quiz(props: { handleGameOver: (arg0: number) => void; }) {
   
     return (
       <>
-        <h4>{steps[activeStep].label}</h4>
+        <h3>{steps[activeStep].label}</h3>
         <div>
           <FormControl>
             <FormLabel id="demo-controlled-radio-buttons-group">Svar</FormLabel>
@@ -96,9 +96,9 @@ function Quiz(props: { handleGameOver: (arg0: number) => void; }) {
         steps={6}
         position="static"
         activeStep={activeStep}
-        sx={{ width: 0.95, minWidth: 350, }}
+        sx={{ minHeight: 75, width: 1, minWidth: 350, }}
         nextButton={
-            <Button size="small" onClick={handleNext} disabled={activeStep === 5 || value === 0}>
+            <Button size="large" onClick={handleNext} disabled={activeStep === 5 || value === 0}>
             {activeStep === 4 ? 
               'Slutför':
               'Next'
@@ -111,7 +111,7 @@ function Quiz(props: { handleGameOver: (arg0: number) => void; }) {
             </Button>
         }
         backButton={
-            <Button size="small" onClick={handleBack} disabled={true}>
+            <Button size="medium" onClick={handleBack} disabled={true}>
             {theme.direction === 'rtl' ? (
                 <KeyboardArrowRight />
             ) : (

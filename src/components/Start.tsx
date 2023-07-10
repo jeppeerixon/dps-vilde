@@ -6,7 +6,9 @@ function Start(props: { handleStartClick: MouseEventHandler<HTMLButtonElement> |
     return (
       <>
         <p>
-          Sitter du i riksdagen? <br></br>
+          Sitter du i riksdagen? 
+        </p>
+        <p>
           Är du i riskzonen för att bli nästa vilde?
         </p>
         <p>
