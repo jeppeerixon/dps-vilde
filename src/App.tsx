@@ -24,6 +24,13 @@ function App() {
     setGameOver(true)
   }
 
+  function handleAgainClick() {
+    setHomeScreen(true)
+    setGameStart(false)
+    setGameOver(false)
+    setPercent(0)
+  }
+
   return (
     <>
       <header>
@@ -37,7 +44,7 @@ function App() {
       <main>
         {homeScreen ? <Start handleStartClick={handleStartClick} /> : null}
         {gameStart ? <Quiz handleGameOver={handleGameOver} /> : null }
-        {gameOver ? <Result value={percent}/> : null}
+        {gameOver ? <Result handleAgainClick={handleAgainClick} value={percent}/> : null}
         {gameStart ? null : 
         <div className='footer'>
           Made by <a href='https://github.com/jeppeerixon'> Jeppe Erixon </a> <GitHubIcon />
