@@ -2,7 +2,7 @@
 Simple quiz app made for one of my favorite podcasts.
 
 ## Link to live project
-Coming soon...
+https://jeppeerixon.github.io/dps-vilde/
 
 ## To run the app locally
 
