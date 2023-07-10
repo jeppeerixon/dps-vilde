@@ -8,11 +8,20 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 function App() {
 
+  const [homeScreen, setHomeScreen] = useState<boolean>(true)
   const [gameStart, setGameStart] = useState<boolean>(false)
   const [gameOver, setGameOver] = useState<boolean>(false)
+  const [percent, setPercent] =useState<number>(0)
 
   function handleStartClick() {
     setGameStart(true)
+    setHomeScreen(false)
+  }
+
+  function handleGameOver(procent: number) {
+    setPercent(procent)
+    setGameStart(false)
+    setGameOver(true)
   }
 
   return (
@@ -26,14 +35,15 @@ function App() {
         
       </header>
       <main>
-        {gameStart ? <Quiz /> : <Start handleStartClick={handleStartClick} />}
-        {gameOver ? <Result /> : null}
-      </main>
-      {gameStart ? null : 
-      <footer>
-        Made by <a href='https://github.com/jeppeerixon'> Jeppe Erixon </a> <GitHubIcon />
-      </footer>
-      }      
+        {homeScreen ? <Start handleStartClick={handleStartClick} /> : null}
+        {gameStart ? <Quiz handleGameOver={handleGameOver} /> : null }
+        {gameOver ? <Result value={percent}/> : null}
+        {gameStart ? null : 
+        <div className='footer'>
+          Made by <a href='https://github.com/jeppeerixon'> Jeppe Erixon </a> <GitHubIcon />
+        </div>
+        }
+      </main>      
     </>
   )
 }

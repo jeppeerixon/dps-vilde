@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import Box from '@mui/material/Box';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -36,19 +34,25 @@ const steps = [
         description: Questions[4].description,
     },
     {
-        label: 'Testet Slut!',
-        description: `Klicka på Slutför för att se resultatet!' + <button>hej</button>`,
-    },
+      label: Questions[4].title,
+      description: Questions[4].description,
+  },
 ];
 
-function Quiz() {
+function Quiz(props: { handleGameOver: (arg0: number) => void; }) {
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
   
     const handleNext = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setTotalValue(totalValue + value)
-      setValue(0)
+      if (activeStep === 4) {
+        props.handleGameOver(totalValue + value)
+        console.log('Game Over!')
+      } else {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setTotalValue(totalValue + value)
+        setValue(0)
+      }
+      
     };
   
     const handleBack = () => {
@@ -65,22 +69,9 @@ function Quiz() {
 
   
     return (
-      <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-        <Paper
-          square
-          elevation={0}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            height: 50,
-            pl: 2,
-            bgcolor: 'background.default',
-          }}
-        >
-          <Typography>{steps[activeStep].label}</Typography>
-        </Paper>
-        <Box sx={{ height: 50, maxWidth: 400, p: 2 }}>
-          
+      <>
+        <h4>{steps[activeStep].label}</h4>
+        <div>
           <FormControl>
             <FormLabel id="demo-controlled-radio-buttons-group">Svar</FormLabel>
             <RadioGroup
@@ -93,19 +84,25 @@ function Quiz() {
                 <FormControlLabel value={Questions[activeStep].points[1]} control={<Radio />} label="Nej" />
             </RadioGroup>
             </FormControl>
-        </Box>
-        <Box sx={{ height: 255, maxWidth: 400, p: 2 }}>
+        </div>
+        <p>
+          <InfoOutlinedIcon /><br></br>
+          <i>
             {steps[activeStep].description}
-        </Box>
+          </i>
+        </p>
         <MobileStepper
         variant="progress"
         steps={6}
         position="static"
         activeStep={activeStep}
-        sx={{ maxWidth: 400, flexGrow: 1 }}
+        sx={{ width: 0.95, minWidth: 350, }}
         nextButton={
             <Button size="small" onClick={handleNext} disabled={activeStep === 5 || value === 0}>
-            Next
+            {activeStep === 4 ? 
+              'Slutför':
+              'Next'
+            }
             {theme.direction === 'rtl' ? (
                 <KeyboardArrowLeft />
             ) : (
@@ -124,7 +121,7 @@ function Quiz() {
             </Button>
         }
         />
-      </Box>
+      </>
     );
   }
   

@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,26 +10,34 @@
 
 header {
   display: flex;
-  max-height: 20vh;
+  justify-content: space-evenly;
+  background-color: rgba(250, 235, 215, 0.5);
+  width: 100%;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  height: 100%;
+  padding-top: 1rem;
 }
 
-footer {
+
+.footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: aliceblue;
+  width: 100%;
 }
 
 
 
 .logo {
-  height: 9rem;
+  border-radius: 1.5rem;
+  height: 7rem;
   padding: 1rem;
   will-change: filter;
   transition: filter 300ms;
