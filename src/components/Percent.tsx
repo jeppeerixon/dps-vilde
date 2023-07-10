@@ -34,13 +34,13 @@ function CircularProgressWithLabel(props: CircularProgressProps & { value: numbe
 }
 
 export default function CircularWithValueLabel(props: {result: number}) {
-  const [progress, setProgress] = React.useState<number>(0);
+    const [progress, setProgress] = React.useState<number>(0);
 
-  React.useEffect(() => {
-    const timer: number = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= props.result ? props.result : prevProgress + 1));
-    }, 30);
-  }, []);
+    React.useEffect(() => {
+        setInterval(() => {
+        setProgress((prevProgress) => (prevProgress >= props.result ? props.result : prevProgress + 1));
+        }, 30);
+    }, []);
 
-  return <CircularProgressWithLabel value={progress} size={200}/>;
+    return <CircularProgressWithLabel value={progress} size={200}/>;
 }
